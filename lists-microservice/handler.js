@@ -22,6 +22,7 @@ module.exports.importRecipientsCsvFromS3 = RecipientCommands.importRecipientsCsv
 // module.exports.recipientUpdatedProcessor = RecipientEventProcessors.recipientUpdatedProcessor;
 module.exports.eventStreamProcessor = EventProcessors.eventStreamProcessor;
 module.exports.syncRecipientStreamWithES = EventProcessors.syncRecipientStreamWithES;
+module.exports.enhanceRecipientMetadata = EventProcessors.enhanceRecipientMetadata;
 
 // Recipient queries
 module.exports.searchRecipientsRaw = RecipientQueries.searchRecipients;

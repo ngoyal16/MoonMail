@@ -13,5 +13,7 @@
   "CUSTOM_API_HOST": "api2.moonmail.io",
   "ACM_CERTIFICATE_NAME": "moonmail.io",
   "RECIPIENTS_TABLE_STREAM_ARN": "...",
+  "CLICKS_TABLE_STREAM_ARN": "...",
+  "OPENS_TABLE_STREAM_ARN": "...",
   "RECIPIENTS_ACTIVITY_S3_BUCKET": "recipients-activity.moonmail.dev.us-east-1"
 }

@@ -53,6 +53,8 @@ custom:
   recipientsBucket: next-recipients.moonmail.${self:custom.currentStage}.${self:provider.region}
   config: ${file(./config.${self:custom.currentStage}.json)}
   recipientsTableStreamArn: ${self:custom.config.RECIPIENTS_TABLE_STREAM_ARN}
+  opensTableStreamArn: ${self:custom.config.OPENS_TABLE_STREAM_ARN}
+  clicksTableStreamArn: ${self:custom.config.CLICKS_TABLE_STREAM_ARN}
   serverless-offline:
     babelOptions:
       presets: ["es2015"]
@@ -384,6 +386,21 @@ functions:
           batchSize: 50
           startingPosition: TRIM_HORIZON
           arn: ${self:custom.recipientsTableStreamArn}
+  
+  enhanceRecipientMetadata:
+    handler: handler.enhanceRecipientMetadata
+    name: ${self:custom.resourcesPrefix}-enhanceRecipientMetadata
+    events:
+      - stream:
+          type: dynamodb
+          batchSize: 1
+          startingPosition: TRIM_HORIZON
+          arn: ${self:custom.clicksTableStreamArn}
+      - stream:
+          type: dynamodb
+          batchSize: 1
+          startingPosition: TRIM_HORIZON
+          arn: ${self:custom.opensTableStreamArn}
               
   # Public API
   createRecipient:

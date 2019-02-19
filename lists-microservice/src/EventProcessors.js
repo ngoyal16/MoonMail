@@ -125,7 +125,23 @@ function syncRecipientStreamWithES(event, context, callback) {
     });
 }
 
+function enhanceRecipientMetadata(event, context, callback) {
+  App.configureLogger(event, context);
+  App.logger().debug('enhanceRecipientMetadata', JSON.stringify(event));
+  
+  const events = LambdaUtils
+    .parseDynamoDBStreamEvent(event);
+    
+  return Promise.map(events, evt => Recipients.processOpenClickEvent(evt), { concurrency: 2 })
+    .then(result => callback(null, result))
+    .catch((err) => {
+      App.logger().error(err);
+      callback(err);
+    });
+}
+
 export default {
+  enhanceRecipientMetadata,
   eventStreamProcessor,
   syncRecipientStreamWithES
 };
