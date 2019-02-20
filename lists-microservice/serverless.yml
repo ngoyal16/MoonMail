@@ -578,6 +578,41 @@ functions:
                 description: "OK"
                 responseModels:
                   "application/json": RecipientsList
+                  
+  getList:
+    handler: handler.getList
+    name: ${self:custom.resourcesPrefix}-getList
+    events:
+      - http:
+          path: /{listId}
+          method: get
+          private: true
+          request:
+            parameters:
+              paths:
+                listId: true
+          documentation:
+            summary: Gets a list
+            tags:
+              - Lists
+            description: >
+              Gets a single list. You can get the list
+              ID in your <a target="_blank" href="https://app.moonmail.io/lists">MoonMail
+              dashboard</a>, under the Settings tab after selecting your list
+            pathParams:
+              -
+                name: listId
+                description: The ID of the list
+                required: true
+            methodResponses:
+              -
+                statusCode: "200"
+                description: "OK"
+                responseModels:
+                  "application/json": List
+              -
+                statusCode: "404"
+                description: "List not found"
 
   getAllLists:
     handler: handler.getAllLists

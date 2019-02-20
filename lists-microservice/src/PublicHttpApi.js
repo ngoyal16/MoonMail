@@ -67,6 +67,19 @@ async function getRecipient(event, context, callback) {
   }
 }
 
+async function getList(event, context, callback) {
+  try {
+    App.configureLogger(event, context);
+    App.logger().info('getList', JSON.stringify(event));
+    const user = await UserContext.byApiKey(event.requestContext.identity.apiKey);
+    const list = await Api.getList(user.id, event.pathParameters.listId);
+    HttpUtils.buildApiResponse({ statusCode: 200, body: list }, callback);
+  } catch (error) {
+    App.logger().error(error, error.stack);
+    HttpUtils.apiErrorHandler(error, callback);
+  }
+}
+
 async function getAllLists(event, context, callback) {
   try {
     App.configureLogger(event, context);
@@ -88,5 +101,6 @@ export default {
   updateRecipient,
   listRecipients,
   getRecipient,
+  getList,
   getAllLists
 };

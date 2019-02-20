@@ -118,6 +118,7 @@ export default {
   updateRecipientsBatch,
   importRecipientsBatch,
   getAllLists: Lists.all,
+  getList: Lists.find,
   createRecipientEs: Recipients.createEs,
   updateRecipientEs: Recipients.updateEs,
   deleteRecipientEs,

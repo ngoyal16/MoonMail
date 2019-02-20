@@ -10,6 +10,7 @@ module.exports.createRecipient = PublicHttpApi.createRecipient;
 module.exports.updateRecipient = PublicHttpApi.updateRecipient;
 module.exports.getRecipient = PublicHttpApi.getRecipient;
 module.exports.listRecipients = PublicHttpApi.listRecipients;
+module.exports.getList = PublicHttpApi.getList;
 module.exports.getAllLists = PublicHttpApi.getAllLists;
 
 
