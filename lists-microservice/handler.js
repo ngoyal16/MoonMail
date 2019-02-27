@@ -9,6 +9,7 @@ import SegmentQueries from './src/SegmentQueries';
 module.exports.createRecipient = PublicHttpApi.createRecipient;
 module.exports.updateRecipient = PublicHttpApi.updateRecipient;
 module.exports.getRecipient = PublicHttpApi.getRecipient;
+module.exports.deleteRecipient = PublicHttpApi.deleteRecipient;
 module.exports.listRecipients = PublicHttpApi.listRecipients;
 module.exports.getList = PublicHttpApi.getList;
 module.exports.getAllLists = PublicHttpApi.getAllLists;

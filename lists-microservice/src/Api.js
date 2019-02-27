@@ -114,6 +114,7 @@ export default {
   mapCsvStringToRecipients: MapCsvStringToRecipients.execute,
   searchRecipients: Recipients.search,
   getRecipient,
+  deleteRecipient: Recipients.delete,
   createRecipientsBatch,
   updateRecipientsBatch,
   importRecipientsBatch,

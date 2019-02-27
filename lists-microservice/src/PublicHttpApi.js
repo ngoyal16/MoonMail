@@ -59,8 +59,23 @@ async function getRecipient(event, context, callback) {
     App.configureLogger(event, context);
     App.logger().info('getRecipient', JSON.stringify(event));
     const user = await UserContext.byApiKey(event.requestContext.identity.apiKey);
-    const recipient = await Api.getRecipient({ listId: event.pathParameters.listId, recipientId: event.pathParameters.recipientId });
+    const { listId, recipientId } = event.pathParameters;
+    const recipient = await Api.getRecipient({ listId, recipientId });
     HttpUtils.buildApiResponse({ statusCode: 200, body: recipient }, callback);
+  } catch (error) {
+    App.logger().error(error, error.stack);
+    HttpUtils.apiErrorHandler(error, callback);
+  }
+}
+
+async function deleteRecipient(event, context, callback) {
+  try {
+    App.configureLogger(event, context);
+    App.logger().info('deleteRecipient', JSON.stringify(event));
+    const user = await UserContext.byApiKey(event.requestContext.identity.apiKey);
+    const { listId, recipientId } = event.pathParameters;
+    await Api.deleteRecipient(listId, recipientId);
+    HttpUtils.buildApiResponse({ statusCode: 200, body: {} }, callback);
   } catch (error) {
     App.logger().error(error, error.stack);
     HttpUtils.apiErrorHandler(error, callback);
@@ -101,6 +116,7 @@ export default {
   updateRecipient,
   listRecipients,
   getRecipient,
+  deleteRecipient,
   getList,
   getAllLists
 };

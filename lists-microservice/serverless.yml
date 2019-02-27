@@ -530,6 +530,42 @@ functions:
               -
                 statusCode: "404"
                 description: "Recipient not found"
+                
+  deleteRecipient:
+    handler: handler.deleteRecipient
+    name: ${self:custom.resourcesPrefix}-deleteRecipient
+    events:
+      - http:
+          path: /{listId}/recipients/{recipientId}
+          method: delete
+          request:
+            parameters:
+              paths:
+                listId: true
+                recipientId: true
+          documentation:
+            summary: Delete a recipient
+            tags:
+              - Recipient
+            description: >
+              Delete a single recipient of the specified list. You can get the list
+              ID in your <a target="_blank" href="https://app.moonmail.io/lists">MoonMail
+              dashboard</a>, Under the Settings tab after selecting your list
+            pathParams:
+              -
+                name: listId
+                description: The ID of the list the recipient belongs to
+                required: true
+              -
+                name: recipientId
+                description: The ID of the recipient
+            methodResponses:
+              -
+                statusCode: "200"
+                description: "OK"
+              -
+                statusCode: "404"
+                description: "Recipient not found"
 
   searchRecipientsRaw:
     handler: handler.searchRecipientsRaw
