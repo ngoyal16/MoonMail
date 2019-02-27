@@ -1,6 +1,6 @@
 import aws from 'aws-sdk';
 import Joi from 'joi';
-import R from 'ramda';
+import * as R from 'ramda';
 
 const stage = 'dev';
 const settings = {
