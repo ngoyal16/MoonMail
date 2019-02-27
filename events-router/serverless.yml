@@ -7,7 +7,6 @@ custom:
   defaultStage: dev
   currentStage: ${opt:stage, self:custom.defaultStage}
   resourcesPrefix: ${self:service}-${self:custom.currentStage}
-  recipientsBucket: next-recipients.moonmail.${self:custom.currentStage}.${self:provider.region}
   config: ${file(./config.${self:custom.currentStage}.json)}
   ssmPath: /moonmail/events-router/${self:custom.currentStage}
   defaultShardCount: 1
