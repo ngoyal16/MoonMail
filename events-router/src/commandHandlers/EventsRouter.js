@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import Promise from 'bluebird';
 import SubscriptionRepo from '../repositories/Subscription';
 import KinesisNotifier from '../notifiers/KinesisNotifier';
